@@ -4,39 +4,14 @@
 			<div class="jumbotron">
 				<h1 class="display-3">Comments</h1>
 			</div>
-			
-			<ul class="list-group">
-			    <li *ngFor="let comment of comments" [class.selected]="comment === selectedComment" (click)="onSelect(comment)" class="list-group-item justify-content-between"><span> {{comment.comment}} </span> -- <span>{{comment.author}}</span></li>
-			</ul>
-			<form (ngSubmit)="onSubmit(f)" #f="ngForm">
-			  <div class="form-group">
-			    <label for="formGroupExampleInput">Comment</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="comment">
-			  </div>
-			  <div class="form-group">
-			    <label for="formGroupExampleInput2">Author</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="author">
-			  </div>
-			  <button type="submit" class="btn btn-primary">Submit</button>
-			</form>	
+		
+			<router-outlet></router-outlet>
+		
 		</div>
 	</div>
 
 </div>
-<div *ngIf="selectedComment">
-	
-	  <div class="form-group">
-	    <label for="formGroupExampleInput">Comment</label>
-	    <input [(ngModel)]="selectedComment.comment" type="text" class="form-control" id="formGroupExampleInput">
-	  </div>
-	  <div class="form-group">
-	    <label for="formGroupExampleInput2">Author</label>
-	    <input [(ngModel)]="selectedComment.author" type="text" class="form-control" id="formGroupExampleInput2">
-	  </div>
-	   <button type="submit" class="btn btn-primary" (click)="editComment()">Submit</button>
-	
-	
-</div>
+
 
 
 

@@ -1,3 +1,31 @@
-<input type="text" class="form-control" [(ngModel)]="commentText">
-<input type="text" class="form-control" [(ngModel)]="commentAuthor">
-<button (click)="makeNewComment($event)">Submit Comment</button>
+<div class="row">
+	<div class="col-xs-12">
+		<form [formGroup]="commentForm" (ngSubmit)="onSubmit(); commentForm.reset()">
+			<div class="row">
+				<div class="col-sm-5 form-group">
+					<label for="comment">Comment</label>
+					<input 
+						type="text" 
+						id="comment" 
+						class="form-control"
+						formControlName="comment"
+						
+						>
+				</div>
+				<div class="col-sm-5 form-group">
+					<label for="author">Author</label>
+					<input 
+						type="text" 
+						id="author" 
+						class="form-control"
+						formControlName="author"
+						>
+				</div>
+		
+			</div>
+		
+				<button class="btn btn-success" type="submit" >Add New Message</button>
+			
+		</form>
+	</div>
+</div>

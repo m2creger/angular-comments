@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Comment } from './comments.model';
 import { CommentService } from './comment.service';
+import { EditCommentsComponent } from './edit-comments/edit-comments.component';
+
 
 @Component({
   selector: 'app-root',
@@ -10,28 +12,17 @@ import { CommentService } from './comment.service';
   providers: [CommentService]
 })
 export class AppComponent {
-  comments: Comment[];
-  selectedComment: Comment;
+  loadedComment = 'comment';
 
-  constructor(private commentService: CommentService) {
+  constructor() { }
 
-  }
-  onSubmit(form: NgForm) {
-  	console.log(form);
-  }
-  onSelect(comment: Comment): void {
-    this.selectedComment = comment;
-  }
-  getComments(): void {
 
-    this.commentService.getComments().then(comments => this.comments = comments);
-
+  ngOnInit() {
+ 
   }
-  ngOnInit(): void {
-    this.getComments();
-  }
-  editComment() {
-    
+  
+  onNavigate(comment: string) {
+    this.loadedComment = comment;
   }
   
 }

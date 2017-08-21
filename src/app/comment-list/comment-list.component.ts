@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Comment } from '../comments.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CommentService } from '../comment.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-comment-list',
@@ -8,14 +11,26 @@ import { Comment } from '../comments.model';
 })
 
 export class CommentListComponent implements OnInit {
-  comments: Comment[] = [
-  	new Comment('first comment!', 'John Guy'),
-  	new Comment('nice work!', 'John Guy'),
-    new Comment('I would also like to congratulate you!','John Guy')
-  ]
-  constructor() { }
+
+  comments: Comment[];
+
+  subscription: Subscription;
+
+  constructor(private commentService: CommentService,
+  			  private router: Router,
+  			  private route: ActivatedRoute) { }
 
   ngOnInit() {
+  	this.subscription = this.commentService.commentChanged
+  		.subscribe(
+  			(comments: Comment[]) => {
+  				this.comments = comments;
+  			});
+  		this.comments = this.commentService.getComments();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

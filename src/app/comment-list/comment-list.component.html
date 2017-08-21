@@ -1,1 +1,13 @@
 
+<hr>
+<div class="row">
+	<div class="col-xs-12">
+		<app-comment *ngFor="let commentElement of comments;
+		let i = index"
+		[comment]="commentElement"
+		[index]="i"></app-comment>
+	</div>
+</div>
+<hr>
+
+<app-new-comment></app-new-comment>

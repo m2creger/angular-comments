@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+			<div class="row">
+				<div class="col-xs-12">
+	          	<button
+	            type="submit"
+	            class="btn btn-success"
+	            >Save</button>
+	          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+	        	</div>
+				<label for="comment">Comment</label>
+				<input type="text" name="comment"
+				formControlName = "comment"
+				class="form-control">
+			</div>
+			<div class="row">
+				<label for="comment">Author</label>
+				<input type="text" name="author"
+				formControlName = "author"
+				class="form-control">
+			</div>
+		</form>
+	</div>
+</div>
